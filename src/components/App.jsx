@@ -11,8 +11,18 @@ function App() {
   }
 
   function addItem(){
-    setAllItems((prevValue)=>[...prevValue, item]);
+    setAllItems((prevValues)=>[...prevValues, item]);
     setItem("");
+  }
+
+  function deleteItem(id){
+    setAllItems((prevValues) => {
+      return prevValues.filter(
+        (item, index)=>{
+          return index !== id;    
+        }
+      );
+    });
   }
 
   return (
@@ -34,7 +44,15 @@ function App() {
       </div>
       <div>
         <ul>
-          {allItems.map((item)=><ToDoItem item={item}/>)}
+          {allItems.map((item, index)=>{
+            return (
+              <ToDoItem 
+                key={index}
+                id={index}
+                item={item}
+                onChecked={deleteItem}
+              />);
+          })}
         </ul>
       </div>
     </div>
