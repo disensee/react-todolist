@@ -3,8 +3,9 @@ import React, { useState } from "react";
 function App() {
   const [item, setItem] = useState("");
   const [allItems, setAllItems] = useState([]);
+  
   function handleChange(event){
-    let newItem = event.target.value;
+    const newItem = event.target.value;
     setItem(newItem);
   }
 
@@ -34,7 +35,7 @@ function App() {
       </div>
       <div>
         <ul>
-          <li>{item}</li>
+          {allItems.map((item)=><li>{item}</li>)}
         </ul>
       </div>
     </div>
