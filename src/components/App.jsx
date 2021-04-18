@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
 function App() {
-  const [task, setTask] = useState("");
-  
+  const [item, setItem] = useState("");
+  const [allItems, setAllItems] = useState([]);
   function handleChange(event){
-    let newTask = event.target.value;
-    setTask(newTask);
+    let newItem = event.target.value;
+    setItem(newItem);
   }
 
+  function addItem(event){
+    const {name, value} = document.getElementById("txt-input");
+    setAllItems((prevValue)=>{
+      return[...prevValue, value];
+    });
+  }
 
   return (
     <div className="container">
@@ -16,16 +22,19 @@ function App() {
       </div>
       <div className="form">
         <input 
-          type="text" 
+          id="txt-input"
+          type="text"
+          name="input" 
           onChange={handleChange}
+          value={item}
         />
-        <button>
+        <button onClick={addItem}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-          <li>{task}</li>
+          <li>{item}</li>
         </ul>
       </div>
     </div>
