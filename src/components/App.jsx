@@ -9,11 +9,9 @@ function App() {
     setItem(newItem);
   }
 
-  function addItem(event){
-    const {name, value} = document.getElementById("txt-input");
-    setAllItems((prevValue)=>{
-      return[...prevValue, value];
-    });
+  function addItem(){
+    setAllItems((prevValue)=>[...prevValue, item]);
+    setItem("");
   }
 
   return (
@@ -43,9 +41,3 @@ function App() {
 }
 
 export default App;
-
-//1. When new text is written into the input, its state should be saved.
-//2. When the add button is pressed, the current data in the input should be
-//added to an array.
-//3. The <ul> should display all the array items as <li>s
-
